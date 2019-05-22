@@ -1,6 +1,6 @@
 {
-  "short_name": "React Demo",
-  "name": "React Demo",
+  "short_name": "Mars Rover Explorer",
+  "name": "Mars Rover Explorer",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,7 +1,7 @@
 enum Rover {
-    Curiosity = 'curiosity',
-    Opportunity = 'opportunity',
-    Spirit = 'spirit',
+  Curiosity = 'curiosity',
+  Opportunity = 'opportunity',
+  Spirit = 'spirit',
 }
 
 export default Rover;
