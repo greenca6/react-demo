@@ -19,7 +19,7 @@ APP_NAME="rover-explorer"
 
 # Deploy the App
 echo "Deploying App..."
-heroku container:push web
-heroku container:release web
+heroku container:push web -a $APP_NAME
+heroku container:release web -a $APP_NAME
 
 echo "Deploy Script Complete"
