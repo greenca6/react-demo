@@ -1,0 +1,11 @@
+sudo: required
+
+jobs:
+  include:
+  - stage: Test
+    script:
+    - npm run test
+  - stage: Deploy
+    if: (branch = master) AND (type = push)
+    provider: heroku
+    script: "./deploy.sh"
