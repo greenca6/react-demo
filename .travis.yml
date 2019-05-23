@@ -1,10 +1,13 @@
 sudo: required
 
+services:
+- docker
+
 jobs:
   include:
   - stage: Test
     script:
-    - npm run test
+    - npm install && npm run test
   - stage: Deploy
     if: (branch = master) AND (type = push)
     provider: heroku
