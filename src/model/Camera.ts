@@ -1,4 +1,5 @@
 enum Camera {
+  Any = 'any',
   FrontHazardAvoidanceCamera = 'fhaz',
   RearHazardAvoidanceCamera = 'rhax',
   MastCamera = 'mast',

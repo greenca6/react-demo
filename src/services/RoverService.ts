@@ -1,3 +1,4 @@
+import moment from 'moment';
 import Rover from '../model/Rover';
 import Camera from '../model/Camera';
 import PhotoResponse from '../model/PhotoResponse';
@@ -7,8 +8,17 @@ const BASE_URL = 'https://api.nasa.gov/mars-photos/api/v1/rovers';
 
 class RoverService {
     getPhotos(rover: Rover, camera: Camera, date: string): Promise<PhotoResponse> {
-        const URI = `${BASE_URL}/${rover}/photos?${camera ? 'camera=' + camera : ''}&earth_date=${date}&api_key=${API_KEY}`;
-        return fetch(URI).then(r => r.json());
+        let requestUrl = `${BASE_URL}/${rover}/photos?api_key=${API_KEY}`;
+
+        if (camera !== Camera.Any && camera !== null) {
+            requestUrl += `&camera=${camera}`;
+        }
+
+        if (date && moment(date).isValid()) {
+            requestUrl += `&earth_date=${date}`;
+        }
+
+        return fetch(requestUrl).then(r => r.json());
     }
 }
 
