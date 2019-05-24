@@ -79,7 +79,7 @@ class Explorer extends React.Component<{ roverService: RoverService }> {
   render() {
     return (
       <>
-        <Typography variant="h2" gutterBottom>Rover Explorer 🚀</Typography>
+        <Typography variant="h2" gutterBottom>Rover Explorer 🚀🚀🚀🚀</Typography>
         <Paper style={{ padding: '16px' }}>
           <Typography variant="subtitle2">Search</Typography>
           <form style={{ display: 'flex', flexWrap: 'wrap', marginTop: '16px' }}>
