@@ -9,6 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
+import { DatePicker } from '@material-ui/pickers';
 import withRoverService from '../../services/withRoverService';
 import RoverService from '../../services/RoverService';
 import Rover from '../../model/Rover';
@@ -21,6 +22,7 @@ class Explorer extends React.Component<{ roverService: RoverService }> {
     camera: null,
     rover: null,
     busy: false,
+    date: null,
   };
   searchResults: PhotoResponse = null;
 
@@ -32,11 +34,14 @@ class Explorer extends React.Component<{ roverService: RoverService }> {
     this.setState({ camera: target.value });
   };
 
+  handleDateChange = (date) => {
+    this.setState({ date });
+  };
+
   handleSearch = () => {
-    const { camera, rover } = this.state;
-    const date = '2015-06-03';
+    const { camera, rover, date } = this.state;
     this.setState({ busy: true });
-    this.props.roverService.getPhotos(rover, camera, date)
+    this.props.roverService.getPhotos(rover, camera, date.format('YYYY-MM-DD'))
       .then((data: PhotoResponse) => {
         this.searchResults = data;
         this.setState({ busy: false });
@@ -76,7 +81,7 @@ class Explorer extends React.Component<{ roverService: RoverService }> {
       <>
         <Typography variant="h2" gutterBottom>Rover Explorer 🚀</Typography>
         <Paper style={{ padding: '16px' }}>
-          <Typography variant="subtitle2">Search (for photos taken on June 3rd, 2015)</Typography>
+          <Typography variant="subtitle2">Search</Typography>
           <form style={{ display: 'flex', flexWrap: 'wrap', marginTop: '16px' }}>
             <TextField
               id="roverSelect"
@@ -106,6 +111,13 @@ class Explorer extends React.Component<{ roverService: RoverService }> {
                 </MenuItem>
               ))}
             </TextField>
+            <DatePicker
+              variant="inline"
+              label="Date"
+              value={this.state.date}
+              onChange={this.handleDateChange}
+              style={{ marginRight: '16px'}}
+            />
             <Button 
               variant="contained" 
               color="primary" 
